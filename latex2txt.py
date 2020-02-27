@@ -28,10 +28,10 @@ def latex_replace1_1(matchobj):
 def to_txt(latex):
     latex = latex.encode('unicode-escape').decode().replace('\\\\', '\\')
 
-    pattern_ftd = r"\\x08egin{figure}.*?\\end{figure}|\\x08egin{table}.*?\\end{table}|\\x08egin{dmath}.*?\\end{dmath}"
-    # remove figure, table, and dmath
+    pattern_ftei = r"\\x08egin{figure}.*?\\end{figure}|\\x08egin{table}.*?\\end{table}|\\x08egin{dmath}.*?\\end{dmath}|\\x08egin{equation}.*?\\end{equation}|\\noindent"
+    # remove figure, table, equation, and noindent
 
-    txt = re.sub(pattern_ftd, "", latex, flags=re.DOTALL)
+    txt = re.sub(pattern_ftei, "", latex, flags=re.DOTALL)
 
     pattern1 = r" \\(\w+?){(.+?)}"
     txt = re.sub(pattern1, latex_replace1, txt)
